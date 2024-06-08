@@ -17,7 +17,7 @@
 
 
 
-<title>Archives: 2024 | xiaoqu</title>
+<title>xiaoqu</title>
 
 
 
@@ -202,82 +202,267 @@
 </div>
 
   <main class="pt-14">
-    <section class="px-6 max-w-prose mx-auto gap-12 grid grid-cols-1">
-  <div class="flex flex-col h-48 items-center justify-center">
-    <h1 class="site-title text-4xl leading-relaxed">
-      xiaoqu
-    </h1>
-    <p class="text-gray-500 mt-2">
-      nihao
-    </p>
-  </div>
-  
-  
-    
-    
-      <div class="relative pointer-events-none">
-        <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2024</span>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+<!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        
+      </h1>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2024-06-08</time>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>1 min</span>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>341 words</span>
+          </span>
+          
+        </section>
       </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+    <h1 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h1><p>4 tables 5 chains</p>
+<pre class="mermaid">flowchart LR
+    subgraph netfilter
+    direction LR
+        subgraph  
+            id[chain INPUT]
+        end
+        subgraph  
+            id1[chain OUTPUT]
+        end
+        subgraph  
+            id2[chain POSTROUTING]
+        end
+        subgraph  
+            id3[chain FORWARD]
+        end
+        subgraph  
+            id4[chain PREROUTING]
+        end
+    end
+id --- id1 --- id2 
+id4 --- id3 --- id
+id3 --- id2</pre>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><table>
+<thead>
+<tr>
+<th align="center">参数(大)</th>
+<th align="center">作用</th>
+<th align="center">参数(小)</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-A</td>
+<td align="center">向指定链(INPUT,forward)中<strong>添加</strong>规则</td>
+<td align="center">-t</td>
+<td align="center">指定要修改的<strong>表</strong>(filer,nat)</td>
+</tr>
+<tr>
+<td align="center">-D</td>
+<td align="center">向指定链(INPUT,forward)中<strong>删除</strong>规则</td>
+<td align="center">-i<a href="interface:接口，表面">^interface</a></td>
+<td align="center">设置数据包进入本机的网络接口（网卡）</td>
+</tr>
+<tr>
+<td align="center">-I</td>
+<td align="center">向指定链(INPUT,forward)中<strong>插入</strong>规则</td>
+<td align="center">-o</td>
+<td align="center">设置数据离开本机的网络接口(网卡)</td>
+</tr>
+<tr>
+<td align="center">-F<a href="flush:清除">^flush</a></td>
+<td align="center">清除指定链中的现有规则</td>
+<td align="center">-j<a href="ACCEPT,DROP,REJECT,RETURN">^jump动作</a></td>
+<td align="center">设置规则的动作</td>
+</tr>
+<tr>
+<td align="center">-L</td>
+<td align="center">显示表中的各链的规则(默认为filter表)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">-P<a href="%E7%AD%96%E7%95%A5%E5%8A%A8%E4%BD%9C%E5%8F%AA%E8%83%BD%E6%98%AF**ACCEPT**%E6%88%96**DROP**">^policy</a></td>
+<td align="center">设置内置链的策略</td>
+<td align="center">-p[^protocol]</td>
+<td align="center">设置要匹配数据包的协议类型</td>
+</tr>
+<tr>
+<td align="center">-R</td>
+<td align="center">替换指定链的指定规则</td>
+<td align="center">-s</td>
+<td align="center">匹配数据包的源<strong>IP</strong>地址</td>
+</tr>
+<tr>
+<td align="center">-N</td>
+<td align="center">创建用户自定义链</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">-E[^E]</td>
+<td align="center">重命名用户的自定义链</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">-X</td>
+<td align="center">删除用户的自定义链</td>
+<td align="center">-v</td>
+<td align="center">显示执行过程详细信息</td>
+</tr>
+<tr>
+<td align="center">-Z</td>
+<td align="center">清空链中的包计数器和字节计数器</td>
+<td align="center">-c</td>
+<td align="center">初始化<strong>包</strong>计数器和<strong>字节</strong>计数器</td>
+</tr>
+<tr>
+<td align="center">-S</td>
+<td align="center">打印指定链中的所以规则</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>[^protocol]:tcp,udp,icmp,或者是all亦或者是&#x2F;etc&#x2F;protocals 里面的协议名<br>[^E]:官方文档注释为<code>--rename-chain</code></p>
+
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
     
-    <a style="--stagger:0" href="/2024/06/08/iptables-mine/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Jun 08
-          ·
-          1 min
-        </p>
-      </section>
-    </a>
-  
-    
-    
-    <a style="--stagger:1" href="/2024/06/07/markdown-l/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
+  </div>
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/06/07/markdown-l/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
           markdown-l
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Jun 07
-          ·
-          1 min
-        </p>
-      </section>
-    </a>
-  
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
     
-    
-    <a style="--stagger:2" href="/2024/06/06/hello-world/" data-animate>
-      <header>
-        <h2 class="font-bold text-xl">
-          Hello World
-        </h2>
-      </header>
-      <section class="text-gray-400 my-2 text-sm time">
-        <p class="line-clamp-4">
-          
-        </p>
-        <p class="line-clamp-4">
-          Jun 06
-          ·
-          1 min
-        </p>
-      </section>
-    </a>
-  
+
+  </div>
 </section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+  <!--引入mermaid库--> 
+   <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
 
   </main>
   <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">

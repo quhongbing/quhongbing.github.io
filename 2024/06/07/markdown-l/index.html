@@ -328,6 +328,11 @@ hardware --- software
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
+        <a href="/2024/06/08/iptables-mine/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+          
+        </a>
+      
     </div>
     <div>
       
@@ -382,22 +387,11 @@ hardware --- software
 </script>
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-  $(document).ready(() => {
-    const maraidConfig = {
-      theme: "dark",
-      logLevel: 3,
-      flowchart: { curve: "linear" },
-      gantt: { axisFormat: "%m/%d/%Y" },
-      sequence: { actorMargin: 50 },
-    };
-    mermaid.initialize(maraidConfig);
-  });
-</script>
-
-
+  <!--引入mermaid库--> 
+   <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
 
 <script src="/lib/fancybox/fancybox.umd.min.js"></script>
 
@@ -515,6 +509,8 @@ hardware --- software
 
 
   <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+  <!--引入mermaid库-->
+
 </body>
 
 </html>
