@@ -226,17 +226,17 @@
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-06-08</time>
+            <time>2024-06-10</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>1 min</span>
+            <span>2 min</span>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>341 words</span>
+            <span>565 words</span>
           </span>
           
         </section>
@@ -350,6 +350,47 @@ id3 --- id2</pre>
 <td align="center"></td>
 </tr>
 </tbody></table>
+<h3 id="列出指定表中所以链的所以规则-默认表是filter"><a href="#列出指定表中所以链的所以规则-默认表是filter" class="headerlink" title="列出指定表中所以链的所以规则(默认表是filter)"></a>列出指定表中所以链的所以规则(默认表是filter)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables -L #或--list</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/iptables/1.png" alt="演示"></p>
+<h3 id="列出指定链的所有规则"><a href="#列出指定链的所有规则" class="headerlink" title="列出指定链的所有规则"></a>列出指定链的所有规则</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables -S 或 --list-rules INPUT</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/iptables/1-1.png" alt="image"></p>
+<h3 id="设置ip地址为192-168-124-136访问本机时丢弃数据包"><a href="#设置ip地址为192-168-124-136访问本机时丢弃数据包" class="headerlink" title="设置ip地址为192.168.124.136访问本机时丢弃数据包"></a>设置ip地址为192.168.124.136访问本机时丢弃数据包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables -A INPUT -s 192.168.124.136 -j DROP</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/iptables/2.png" alt="img"><br><img src="/../images/iptables/3.png" alt="图片"></p>
+<h3 id="设置源IP——192-168-124-135通过ICMP协议访问本机"><a href="#设置源IP——192-168-124-135通过ICMP协议访问本机" class="headerlink" title="设置源IP——192.168.124.135通过ICMP协议访问本机"></a>设置源IP——192.168.124.135通过ICMP协议访问本机</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables --append INPUT\</span><br><span class="line">--source 192.168.124.135\</span><br><span class="line">--policy icmp\</span><br><span class="line">--jump DROP</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改INPUT链第一条规则的协议为ICMP"><a href="#修改INPUT链第一条规则的协议为ICMP" class="headerlink" title="修改INPUT链第一条规则的协议为ICMP"></a>修改INPUT链第一条规则的协议为ICMP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptabels -R INPUT 1 \</span><br><span class="line">--protocol icmp\</span><br><span class="line">--jump DROP</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改之前</strong></p>
+<p><img src="/../images/iptables/4.png" alt="imge"></p>
+<p><strong>修改之后</strong></p>
+<p><img src="/../images/iptables/5.png" alt="image"></p>
+<h3 id="设置FORWARD链的默认策略为DROP"><a href="#设置FORWARD链的默认策略为DROP" class="headerlink" title="设置FORWARD链的默认策略为DROP"></a>设置FORWARD链的默认策略为DROP</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables -P FORWARD DROP</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/iptables/6.png" alt="image"></p>
+<h3 id="设置网络接口ens160不接收数据包"><a href="#设置网络接口ens160不接收数据包" class="headerlink" title="设置网络接口ens160不接收数据包"></a>设置网络接口ens160不接收数据包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# iptables -I INPUT -i ens160 -j DROP</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/iptables/7.png" alt="image"></p>
+<h1 id="网络协议涉及的文件"><a href="#网络协议涉及的文件" class="headerlink" title="网络协议涉及的文件"></a>网络协议涉及的文件</h1><h3 id="etc-protocals"><a href="#etc-protocals" class="headerlink" title="&#x2F;etc&#x2F;protocals"></a>&#x2F;etc&#x2F;protocals</h3><table>
+<thead>
+<tr>
+<th align="center">文件内容</th>
+<th align="left">规定内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>协议名</strong></td>
+<td align="left">protocal(udp,tcp,…)</td>
+</tr>
+<tr>
+<td align="center"><strong>协议号</strong></td>
+<td align="left">协议的官方数值,出现在IP包头</td>
+</tr>
+<tr>
+<td align="center"><strong>协议别名</strong></td>
+<td align="left">TCP,UDP,…</td>
+</tr>
+</tbody></table>
 <p>[^protocol]:tcp,udp,icmp,或者是all亦或者是&#x2F;etc&#x2F;protocals 里面的协议名<br>[^E]:官方文档注释为<code>--rename-chain</code></p>
 
   </article>
@@ -361,13 +402,13 @@ id3 --- id2</pre>
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2024/06/06/hello-world/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          Hello World
-        </a>
-      
     </div>
     <div>
+      
+        <a href="/2024/06/07/markdown-l/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          markdown-l
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>
