@@ -17,7 +17,7 @@
 
 
 
-<title>Nginx | xiaoqu</title>
+<title>文件特殊权限 | xiaoqu</title>
 
 
 
@@ -156,7 +156,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        Nginx
+        文件特殊权限
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -211,18 +211,22 @@
 
 <!-- toc -->
 
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
 <section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        Nginx
+        文件特殊权限
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-06-11</time>
+            <time>2024-06-12</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
@@ -232,7 +236,7 @@
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>0 words</span>
+            <span>110 words</span>
           </span>
           
         </section>
@@ -241,7 +245,20 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    
+    <h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><p>有二进制文件执行权限的用户临时拥有该文件<strong>拥有者</strong>的权限</p>
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -Z </span><br></pre></td></tr></table></figure>
+<p><img src="/../../public/images/AccessOfFileAndDocu/1.png" alt="image"></p>
+<h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><ol>
+<li>有二进制文件执行权限的用户临时拥有该文件<strong>拥有组</strong>的权限</li>
+<li>对于拥有SGID的目录，用户在该目录下创建文件会继承该目录的用户组</li>
+</ol>
+<hr>
+<ul>
+<li>设置&#x2F;home目录SGID权限<br><img src="/../../public/images/AccessOfFileAndDocu/2.png" alt="iamge"><br><img src="/../../public/images/AccessOfFileAndDocu/3.png" alt="iamge"></li>
+<li>在&#x2F;home目录下创建文件,用admin用户</li>
+</ul>
+
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
@@ -251,16 +268,11 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2024/06/12/%E6%96%87%E4%BB%B6%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          文件特殊权限
-        </a>
-      
     </div>
     <div>
       
-        <a href="/2024/06/10/iptables-mine/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          iptables
+        <a href="/2024/06/11/Ngnix/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          Nginx
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       
