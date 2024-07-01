@@ -17,7 +17,7 @@
 
 
 
-<title>文件特殊权限 | xiaoqu</title>
+<title>VimLearn | xiaoqu</title>
 
 
 
@@ -156,7 +156,7 @@
         </h2>
       </a>
       <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
-        文件特殊权限
+        VimLearn
       </div>
       <div class="flex-1"></div>
       <div class="flex items-center gap-3">
@@ -211,22 +211,18 @@
 
 <!-- toc -->
 
-  <!-- tocbot -->
-<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
-
-
 <section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- header -->
   <header class="overflow-hidden pt-6 pb-6 md:pt-12">
     <div class="pt-4 md:pt-6">
       <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        文件特殊权限
+        VimLearn
       </h1>
       <div>
         <section class="flex items-center gap-3 text-sm">
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-06-25</time>
+            <time>2024-07-01</time>
           </span>
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
@@ -236,7 +232,7 @@
           <span class="text-gray-400">·</span>
           <span class="flex items-center gap-1">
             <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>302 words</span>
+            <span>114 words</span>
           </span>
           
         </section>
@@ -245,38 +241,44 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
-    <h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><p>有二进制文件执行权限的用户临时拥有该文件<strong>拥有者</strong>的权限</p>
-<hr>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -Z </span><br></pre></td></tr></table></figure>
-<p><img src="/../images/AccessOfFileAndDocu/1.png" alt="image"></p>
-<h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><ol>
-<li>有二进制文件执行权限的用户临时拥有该文件<strong>拥有组</strong>的权限</li>
-<li>对于拥有SGID的目录，用户在该目录下创建文件会继承该目录的用户组</li>
-</ol>
-<hr>
-<ul>
-<li>设置&#x2F;home目录SGID权限<br><img src="/../images/AccessOfFileAndDocu/2.png" alt="iamge"><br><img src="/../images/AccessOfFileAndDocu/3.png" alt="iamge"></li>
-<li>切换到xiaoqu用户环境,在&#x2F;home目录下创建文件后，其文件的所属组为该目录的所属组。<br><img src="/../images/AccessOfFileAndDocu/4.png" alt="image"><blockquote>
-<p>test文件依然能别xiaoqu删除</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="SBIT"><a href="#SBIT" class="headerlink" title="SBIT"></a>SBIT</h2><h3 id="谁创建的文件，谁管理这个文件。"><a href="#谁创建的文件，谁管理这个文件。" class="headerlink" title="谁创建的文件，谁管理这个文件。"></a>谁创建的文件，谁管理这个文件。</h3><h3 id="以-tmp目录为例-该目录本身具有Sbit权限"><a href="#以-tmp目录为例-该目录本身具有Sbit权限" class="headerlink" title="以&#x2F;tmp目录为例(该目录本身具有Sbit权限)"></a>以&#x2F;tmp目录为例(该目录本身具有Sbit权限)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l</span><br></pre></td></tr></table></figure>
-<p><img src="/../images/AccessOfFileAndDocu/5.png" alt="image"></p>
-<p>在xiaoqu环境下与&#x2F;tmp文件夹下创建文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[xiaoqu@localhost tmp]$ touch test</span><br><span class="line">[xiaoqu@localhost tmp]$ ll </span><br></pre></td></tr></table></figure>
-<p><img src="/../images/AccessOfFileAndDocu/6.png" alt="image"></p>
-<p>使用admin用户环境删除&#x2F;tmp目录下的test文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[admin@localhost tmp]$ rm test</span><br></pre></td></tr></table></figure>
-<p><img src="/../images/AccessOfFileAndDocu/7.png" alt="image"></p>
-<blockquote>
-<p>即使test文件权限为777因为SBIT亦无法删除该文件</p>
-</blockquote>
-<p><img src="/../images/AccessOfFileAndDocu/8.png" alt="image"></p>
-<h1 id="文件的隐藏属性"><a href="#文件的隐藏属性" class="headerlink" title="文件的隐藏属性"></a>文件的隐藏属性</h1><h2 id="chattr-change-attributes"><a href="#chattr-change-attributes" class="headerlink" title="chattr(change attributes)"></a>chattr(change attributes)</h2><h2 id="lsattr-list-attributes"><a href="#lsattr-list-attributes" class="headerlink" title="lsattr(list attributes)"></a>lsattr(list attributes)</h2><h1 id="文件访问控制列表-ACL"><a href="#文件访问控制列表-ACL" class="headerlink" title="文件访问控制列表(ACL)"></a>文件访问控制列表(ACL)</h1><blockquote>
-<p>  <strong>可针对单一用户，单一用户组，单一文件，单一目录设置读&#x2F;写&#x2F;执行权限</strong></p>
-</blockquote>
-<h2 id="setfacl-set-files-ACL"><a href="#setfacl-set-files-ACL" class="headerlink" title="setfacl(set files ACL)"></a>setfacl(set files ACL)</h2><h2 id="getfacl-get-files-ACL"><a href="#getfacl-get-files-ACL" class="headerlink" title="getfacl(get files ACL)"></a>getfacl(get files ACL)</h2>
+    <table>
+<thead>
+<tr>
+<th align="center">命令（普通模式）</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">w</td>
+<td align="center">向<em><strong>前</strong></em>(右)跳到一个单词的词首</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">向<em><strong>后</strong></em>(左)跳到一个单词的词首</td>
+</tr>
+<tr>
+<td align="center">e</td>
+<td align="center">移动到下一个单词的词尾</td>
+</tr>
+<tr>
+<td align="center">ge</td>
+<td align="center">移动到上一个单词的词尾</td>
+</tr>
+</tbody></table>
+<pre class="mermaid">flowchart LR
+    id1[<mark style= background-color:#ff0000>T</mark>his is a line with example text]
+    == w ==> 
+    id2[This <mark style= background-color:#ff0000>i</mark>s a line with example text] 
+    ==3w==>
+    id3[This is a line <mark style= background-color:#ff0000>w</mark>ith example text]</pre>
+
+<pre class="mermaid">flowchart LR
+    id1[This is a line <mark style= background-color:#ff0000>w</mark>ith example text]
+    == b ==> 
+    id2[This is a <mark style= background-color:#ff0000>l</mark>ine with example text] 
+    ==3b==>
+    id3[<mark style= background-color:#ff0000>T</mark>his is a line with example text]</pre>
+
   </article>
   <!-- tag -->
   <div class="mt-12 pt-6 border-t border-gray-200">
@@ -286,16 +288,11 @@
   <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
     <div>
       
-        <a href="/2024/06/15/TasksOfPeriod/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
-          PeriodTasks
-        </a>
-      
     </div>
     <div>
       
-        <a href="/2024/06/11/Ngnix/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          Nginx
+        <a href="/2024/06/25/hello-world/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          Hello World
           <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
         </a>
       
